@@ -1,2 +1,2 @@
 pyModbusTCP
-pymodbus
+pymodbus==3.9.2
