@@ -4,7 +4,6 @@
 from dataclasses import dataclass
 from typing import Callable, Any
 from pymodbus.client.mixin import ModbusClientMixin
-from pymodbus.constants import Endian
 from enum import Enum
 from functools import partial
 
@@ -40,21 +39,21 @@ class ModbusAddress:
 
 
 def string(val: (list[int] | list[bool] | None)) -> str:
-    return ModbusClientMixin.convert_from_registers(registers=val, data_type=ModbusClientMixin.DATATYPE.STRING, word_order=Endian.BIG, string_encoding="ascii")
+    return ModbusClientMixin.convert_from_registers(registers=val, data_type=ModbusClientMixin.DATATYPE.STRING, word_order="big", string_encoding="ascii")
 
 def integer(val: (list[int] | list[bool] | None), type: ModbusClientMixin.DATATYPE) -> int:
-    return ModbusClientMixin.convert_from_registers(registers=val, data_type=type, word_order=Endian.BIG)
+    return ModbusClientMixin.convert_from_registers(registers=val, data_type=type, word_order="big")
 
 def float32(val: (list[int] | list[bool] | None)) -> float:
-    return ModbusClientMixin.convert_from_registers(registers=val, data_type=ModbusClientMixin.DATATYPE.FLOAT32, word_order=Endian.BIG)
+    return ModbusClientMixin.convert_from_registers(registers=val, data_type=ModbusClientMixin.DATATYPE.FLOAT32, word_order="big")
 
 def boolean(val: (list[int] | list[bool] | None)) -> bool:
-    data = ModbusClientMixin.convert_from_registers(registers=val, data_type=ModbusClientMixin.DATATYPE.UINT16, word_order=Endian.BIG)
+    data = ModbusClientMixin.convert_from_registers(registers=val, data_type=ModbusClientMixin.DATATYPE.UINT16, word_order="big")
     assert (data == 0) or (data == 1)
     return bool(data)
 
 def current_source(val: (list[int] | list[bool] | None)) -> CurrentLimitSource:
-    data = ModbusClientMixin.convert_from_registers(registers=val, data_type=ModbusClientMixin.DATATYPE.UINT16, word_order=Endian.BIG)
+    data = ModbusClientMixin.convert_from_registers(registers=val, data_type=ModbusClientMixin.DATATYPE.UINT16, word_order="big")
     return CurrentLimitSource(data)
 
 def encode_int(val: int, num_registers: int):
