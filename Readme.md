@@ -10,7 +10,7 @@ To run the project, you need the following dependencies:
 Set up the virtual env:
   * `python -m venv venv` (see https://docs.python.org/3/tutorial/venv.html)
     * On Windows: `.\venv\Scripts\activate`
-    * On Linux: `venv/bin/activate`
+    * On Linux: `source venv/bin/activate`
 
 Install the python dependencies with pip:
   * `pip install -r requirements.txt`
